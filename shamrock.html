@@ -24,7 +24,7 @@
             </div>
             <ul>
                 <li>
-                    <a href="./index.html" class="active">
+                    <a href="./index.html">
                         <span class="icon"><i class="fas fa-home"></i></span>
                         <span class="item">Home</span>
                     </a>
@@ -54,7 +54,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="./shamrock.html">
+                    <a href="./shamrock.html" class="active">
                         <span class="icon"><i class="fas fa-chart-line"></i></span>
                         <span class="item">Shamrock code</span>
                     </a>
@@ -77,23 +77,54 @@
 <div class="page-content">
 	<div class="wrap">
 		
-        <div class="post"> 
-            
-    
-            <hr>
-            <h1>Welcome</h1>
-            <hr>
-
-            <br />
-
-
-            <h5>
-            I'm a PHD student under the supervision of Guillaume Laibe, working mainly on dust gas astrophysics and planet formation.
-            </p>
-    
-            
+        <div class="post">
+            <img src="./shamrock/sham_logo.png" width="85%">  
+                <h3>An astrophysical code for AMR & SPH on GPU clusters</h3>
+                <br />
+                <hr><br />
+                <h1>Current status :</h1>
+                <br />
         
-        </div>
+
+
+
+
+              <table>
+                <tr>
+                    <th>MPI Layer</th>
+                    <th>✅</th> 
+                    <th></th> 
+                </tr>
+                <tr>
+                    <th>GPU Layer</th>
+                    <th>✅</th> 
+                    <th>(using <a href="https://www.khronos.org/sycl/">Sycl</a>)</th> 
+                </tr>
+                <tr>
+                    <td>Unit testing</td>
+                    <td>WIP</td> 
+                    <td>not complete</td>
+                </tr>
+                <tr>
+                    <td>Setup / User layer</td>
+                    <td>WIP</td> 
+                    <td>need the dumps</td>
+                </tr>
+                <tr>
+                    <td>Physical testing</td>
+                    <td>WIP</td> 
+                    <td>Working on SOD tube</td>
+                </tr>
+              </table>  
+              
+              
+
+
+
+        
+              </p>
+        
+          </div>
         
 	</div>
 </div>
