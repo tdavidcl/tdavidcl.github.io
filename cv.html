@@ -10,66 +10,18 @@
 
 </head>
 <body>
-   
-    <div class="wrapper">
-        <div class="section">
-            <div class="top_navbar"></div>
-        </div>
-        <div class="sidebar">
-            <div class="profile">
-                <img src="./files/profile.jpeg" alt="profile_picture">
-                <h3>Timothée David--Cléris</h3>
-                <p>PHD student</p>
-                <p>Astrophysics / Informatics</p>
-            </div>
-            <ul>
-                <li>
-                    <a href="./index.html"">
-                        <span class="icon"><i class="fas fa-home"></i></span>
-                        <span class="item">Home</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="./cv.html" class="active">
-                        <span class="icon"><i class="fas fa-desktop"></i></span>
-                        <span class="item">CV</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="./publications.html">
-                        <span class="icon"><i class="fas fa-user-friends"></i></span>
-                        <span class="item">Publications</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="./research.html">
-                        <span class="icon"><i class="fas fa-tachometer-alt"></i></span>
-                        <span class="item">Research</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="./posts.html">
-                        <span class="icon"><i class="fas fa-database"></i></span>
-                        <span class="item">Posts</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="./shamrock.html">
-                        <span class="icon"><i class="fas fa-chart-line"></i></span>
-                        <span class="item">Shamrock code</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://orcid.org/0000-0001-6696-7917">
-                        <span class="icon"><i class="fas fa-circle"></i></span>
-                        <span class="item">Orcid</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-        
-    </div>
-  
+    <script type="text/javascript" src="write_menu.js"></script>
+
+    <script>
+        write_sidebar("cv");
+    </script>
+
+    <script>
+        var hamburger = document.querySelector(".hamburger");
+        hamburger.addEventListener("click", function(){
+            document.querySelector("body").classList.toggle("active");
+        })
+   </script>
 </body>
 
 

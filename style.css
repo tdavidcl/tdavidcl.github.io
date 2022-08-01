@@ -123,7 +123,17 @@ body.active .wrapper .section{
     padding-bottom: 50px;
     padding-left: 225px;
     background-color:#fff;
+    transition: all 0.5s ease;
 }
+
+body.active .page-content{
+	transition: all 0.5s ease;
+    padding-left: 0px;
+}
+
+
+
+
 
 .wrap:before,
 .wrap:after{content:"";display:table;}
