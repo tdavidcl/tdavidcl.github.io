@@ -1,5 +1,5 @@
 
-function write_sidebar(page) {
+function write_sidebar(page, prefix) {
         
     var srcsidebar = "<div id=\"sidebar-div\" class=\"wrapper\">  \
             <div class=\"section\">  \
@@ -13,44 +13,44 @@ function write_sidebar(page) {
             </div>  \
             <div class=\"sidebar\">  \
                 <div class=\"profile\">  \
-                    <img src=\"./files/profile.jpeg\" alt=\"profile_picture\">  \
+                    <img src=\"##./files/profile.jpeg\" alt=\"profile_picture\">  \
                     <h3>Timothée David--Cléris</h3>  \
                     <p>PHD student</p>  \
                     <p>Astrophysics / Informatics</p>  \
                 </div>  \
                 <ul>  \
                     <li>  \
-                        <a href=\"./index.html\"  ####rep_index>  \
+                        <a href=\"##./index.html\"  ####rep_index>  \
                             <span class=\"icon\"><i class=\"fas fa-home\"></i></span>  \
                             <span class=\"item\">Home</span>  \
                         </a>  \
                     </li>  \
                     <li>  \
-                        <a href=\"./cv.html\"  ####rep_cv>  \
+                        <a href=\"##./cv.html\"  ####rep_cv>  \
                             <span class=\"icon\"><i class=\"fas fa-desktop\"></i></span>  \
                             <span class=\"item\">CV</span>  \
                         </a>  \
                     </li>  \
                     <li>  \
-                        <a href=\"./publications.html\"  ####rep_publications>  \
+                        <a href=\"##./publications.html\"  ####rep_publications>  \
                             <span class=\"icon\"><i class=\"fas fa-user-friends\"></i></span>  \
                             <span class=\"item\">Publications</span>  \
                         </a>  \
                     </li>  \
                     <li>  \
-                        <a href=\"./research.html\"  ####rep_research>  \
+                        <a href=\"##./research.html\"  ####rep_research>  \
                             <span class=\"icon\"><i class=\"fas fa-tachometer-alt\"></i></span>  \
                             <span class=\"item\">Research</span>  \
                         </a>  \
                     </li>  \
                     <li>  \
-                        <a href=\"./posts.html\"  ####rep_posts>  \
+                        <a href=\"##./posts.html\"  ####rep_posts>  \
                             <span class=\"icon\"><i class=\"fas fa-database\"></i></span>  \
                             <span class=\"item\">Posts</span>  \
                         </a>  \
                     </li>  \
                     <li>  \
-                        <a href=\"./shamrock.html\"   ####rep_shamrock>  \
+                        <a href=\"##./shamrock.html\"   ####rep_shamrock>  \
                             <span class=\"icon\"><i class=\"fas fa-chart-line\"></i></span>  \
                             <span class=\"item\">Shamrock code</span>  \
                         </a>  \
@@ -66,6 +66,9 @@ function write_sidebar(page) {
             \
         </div>";
 
+
+    
+    srcsidebar = srcsidebar.replaceAll("##./",prefix)
 
     if(page.match("index")){
         srcsidebar = srcsidebar.replace("####rep_index"," class=\"active\">");
@@ -102,6 +105,7 @@ function write_sidebar(page) {
     }else{
         srcsidebar = srcsidebar.replace("####rep_shamrock","");
     }
+
 
     document.writeln(srcsidebar);
 }

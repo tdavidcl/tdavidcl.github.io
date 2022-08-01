@@ -185,3 +185,20 @@ table {
     ;margin-left:auto;
     margin-right:auto;
 }
+
+.post-title {
+	color: #000;
+	font-family: 'Courier New', Courier, monospace;
+}
+
+.post-date{
+	color: #000;
+	font-family: 'Courier New', Courier, monospace;
+	font-size: smaller;
+}
+
+.post-desc{
+	color: #000;
+	font-family: 'Courier New', Courier, monospace;
+	text-indent: 25px;
+}
