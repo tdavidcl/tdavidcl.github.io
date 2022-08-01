@@ -61,6 +61,12 @@ function write_sidebar(page, prefix) {
                             <span class=\"item\">Orcid</span>  \
                         </a>  \
                     </li>  \
+                    <li>  \
+                        <a href=\"mailto:timothee.david--cleris@ens-lyon.fr\">  \
+                            <span class=\"icon\"><i class=\"fas fa-at\"></i></span>  \
+                            <span class=\"item\">Mail</span>  \
+                        </a>  \
+                    </li>  \
                 </ul>  \
             </div>  \
             \

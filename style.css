@@ -186,6 +186,16 @@ table {
     margin-right:auto;
 }
 
+div.post > p {
+	font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.post > h2{
+	font-family: Helvetica, sans-serif;
+	line-height: 50px;
+	font-style: bold;
+}
+
 .post-title {
 	color: #000;
 	font-family: 'Courier New', Courier, monospace;
@@ -205,9 +215,18 @@ table {
 }
 
 
+
+
+
+
+
+
+
+
 body > div.page-content > div > div > pre {
 	background-color: rgb(245, 245, 245);
 	border-radius: 10px;
+	margin: 5px;
 }
 
 body > div.page-content > div > div > pre > code {
@@ -218,6 +237,7 @@ body > div.page-content > div > div > pre > code {
 .hljs {
 	background: #fff;
 	color: black;
+	font-family: 'Courier New', Courier, monospace;
   }
   
   /* Gray DOCTYPE selectors like WebKit */
@@ -287,6 +307,7 @@ body > div.page-content > div > div > pre > code {
   .hljs-formula {
 	background-color: #eee;
 	font-style: italic;
+	font-family: 'Courier New', Courier, monospace;
   }
   
   .hljs-addition {
@@ -305,8 +326,12 @@ body > div.page-content > div > div > pre > code {
   .hljs-doctag,
   .hljs-strong {
 	font-weight: bold;
+	font-family: 'Courier New', Courier, monospace;
   }
   
   .hljs-emphasis {
 	font-style: italic;
+	font-family: 'Courier New', Courier, monospace;
   }
+
+  

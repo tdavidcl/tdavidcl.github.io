@@ -39,17 +39,20 @@ for fpath in glob.glob("src/posts/*.html"):
 
     html_src_splt = html_src.splitlines()
 
-    html_src = ""
-
-    name = html_src_splt[0]
-    date = html_src_splt[1]
-    desc = html_src_splt[2]
+    
 
 
+    name = html_src[html_src.find(">")+1:html_src.find("</h1>")].replace("\n", " ")
+    html_src = html_src[html_src.find("</h1>")+5:]
 
-    name = re.sub(r'<\/?[a-z][a-z0-9]*[^<>]*>|<!--.*?-->', '', name)
-    date = re.sub(r'<\/?[a-z][a-z0-9]*[^<>]*>|<!--.*?-->', '', date)
-    desc = re.sub(r'<\/?[a-z][a-z0-9]*[^<>]*>|<!--.*?-->', '', desc)
+    date = html_src[html_src.find(">")+1:html_src.find("</p>")].replace("\n", " ")
+    html_src = html_src[html_src.find("</p>")+4:]
+
+    desc = html_src[html_src.find(">")+1:html_src.find("</p>")].replace("\n", " ")
+    html_src = html_src[html_src.find("</p>")+4:]
+
+
+    tmp_html_src = ""
 
     name = "<h1 class=\"post-title\">" +name+"</h1>"
     date = "<h4 class=\"post-date\">" +date+"</h4>"
@@ -59,12 +62,12 @@ for fpath in glob.glob("src/posts/*.html"):
     print(date)
     print(desc)
 
-    html_src += name + "\n"
-    html_src += date + "\n<br/>\n"
-    html_src += desc + "\n<br/><hr/><br/>\n"
+    tmp_html_src += name + "\n"
+    tmp_html_src += date + "\n<br/>\n"
+    tmp_html_src += desc + "\n<br/><hr/><br/>\n"
 
-    for a in html_src_splt[3:]:
-        html_src += a + "\n"
+    
+    html_src = tmp_html_src + html_src
 
 
     article_html_path.append((fpath).replace("src", "build"))
