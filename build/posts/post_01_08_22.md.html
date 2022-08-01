@@ -22,6 +22,13 @@
             document.querySelector("body").classList.toggle("active");
         })
    </script>
+
+    <!link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.6.0/build/styles/default.min.css">
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.6.0/build/highlight.min.js"></script>
+    <!-- and it's easy to individually load additional languages -->
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.6.0/build/languages/go.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
 </body>
 
 
@@ -32,11 +39,16 @@
 
 <div class="post">
 
-<h1 class="post-title">Test post</h1>
+<h1 class="post-title">Test c++ post</h1>
 <h4 class="post-date">1 aug 2022</h4>
-<br /><hr>
-<h4 class="post-desc">desc</h4>
-<hr><br />
+<br/>
+<h5 class="post-desc">just trying highlighting for c++ source code</h5>
+<br/><hr/><br/>
+<p>text body</p>
+<pre class="cpp"><code>#include &lt;iostream&gt;
+int main(void){
+    std::cout &lt;&lt; &quot;Hello World !&quot; &lt;&lt; std::endl;
+}</code></pre>
 
 </div>
 
