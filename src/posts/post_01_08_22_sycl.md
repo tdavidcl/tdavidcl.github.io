@@ -1,7 +1,7 @@
 # Sycl setup for Linux and macOS
-1 aug 2022 (Updated 1 aug 2022)
+1 aug 2022 (Updated 22 aug 2023)
 
-In this post I'm describing how to get DPCPP & HipSycl working.
+In this post I'm describing how to get DPCPP & OpenSYCL working.
 
 
 ## DPCPP (Linux only)
@@ -18,7 +18,7 @@ git clone https://github.com/intel/llvm -b sycl
 python3 buildbot/configure.py --llvm-external-projects compiler-rt --cmake-opt="-DCMAKE_INSTALL_PREFIX=../../sycl_cpl/dpcpp"
 ```
 
-or 
+or if cuda is available
 
 ```sh
 cd llvm
@@ -38,16 +38,16 @@ ninja all
 
 <br/>
 
-## HipSyCL (Linux / Macos)
+## OpenSYCL (Linux / Macos)
 
 - to clone : 
 ```sh
-git clone --recurse-submodules https://github.com/illuhad/hipSYCL
+git clone --recurse-submodules https://github.com/OpenSYCL/OpenSYCL
 ```
 - to configure : 
 ```sh
 cd hipSYCL
-cmake -DCMAKE_INSTALL_PREFIX=../../sycl_cpl/hipSYCL .
+cmake -DCMAKE_INSTALL_PREFIX=../../sycl_cpl/OpenSYCL .
 ```
 - to compile / install: 
 ```sh
@@ -117,7 +117,7 @@ then
     cd ..
 else
     echo "hipSYCL folder not found -> git clone"
-    git clone --recurse-submodules https://github.com/illuhad/hipSYCL
+    git clone --recurse-submodules https://github.com/OpenSYCL/OpenSYCL
 fi
 
 cd ..
@@ -126,9 +126,9 @@ cd ..
 
 echo "$(pwd)"
 
-echo "compiling hipSYCL"
-cd sycl_cpl_src/hipSYCL
-cmake -DCMAKE_INSTALL_PREFIX=../../sycl_cpl/hipSYCL .
+echo "compiling OpenSYCL"
+cd sycl_cpl_src/OpenSYCL
+cmake -DCMAKE_INSTALL_PREFIX=../../sycl_cpl/OpenSYCL .
 make -j install
 cd ..
 

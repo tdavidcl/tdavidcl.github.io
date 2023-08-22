@@ -40,9 +40,9 @@
 <div class="post">
 
 <h1 class="post-title">Sycl setup for Linux and macOS</h1>
-<h4 class="post-date">1 aug 2022 (Updated 1 aug 2022)</h4>
+<h4 class="post-date">1 aug 2022 (Updated 22 aug 2023)</h4>
 <br/>
-<h5 class="post-desc">In this post I’m describing how to get DPCPP &amp; HipSycl working.</h5>
+<h5 class="post-desc">In this post I’m describing how to get DPCPP &amp; OpenSYCL working.</h5>
 <br/><hr/><br/>
 
 <h2 id="dpcpp-linux-only">DPCPP (Linux only)</h2>
@@ -54,7 +54,7 @@
 <li>to configure :</li>
 </ul>
 <pre class="sh"><code>python3 buildbot/configure.py --llvm-external-projects compiler-rt --cmake-opt=&quot;-DCMAKE_INSTALL_PREFIX=../../sycl_cpl/dpcpp&quot;</code></pre>
-<p>or</p>
+<p>or if cuda is available</p>
 <pre class="sh"><code>cd llvm
 python3 buildbot/configure.py --llvm-external-projects compiler-rt --cuda --cmake-opt=&quot;-DCMAKE_INSTALL_PREFIX=../../sycl_cpl/dpcpp&quot;</code></pre>
 <ul>
@@ -64,16 +64,16 @@ python3 buildbot/configure.py --llvm-external-projects compiler-rt --cuda --cmak
 <p>or (in build directory)</p>
 <pre class="sh"><code>ninja all</code></pre>
 <p><br/></p>
-<h2 id="hipsycl-linux-macos">HipSyCL (Linux / Macos)</h2>
+<h2 id="opensycl-linux-macos">OpenSYCL (Linux / Macos)</h2>
 <ul>
 <li>to clone :</li>
 </ul>
-<pre class="sh"><code>git clone --recurse-submodules https://github.com/illuhad/hipSYCL</code></pre>
+<pre class="sh"><code>git clone --recurse-submodules https://github.com/OpenSYCL/OpenSYCL</code></pre>
 <ul>
 <li>to configure :</li>
 </ul>
 <pre class="sh"><code>cd hipSYCL
-cmake -DCMAKE_INSTALL_PREFIX=../../sycl_cpl/hipSYCL .</code></pre>
+cmake -DCMAKE_INSTALL_PREFIX=../../sycl_cpl/OpenSYCL .</code></pre>
 <ul>
 <li>to compile / install:</li>
 </ul>
@@ -138,7 +138,7 @@ then
     cd ..
 else
     echo &quot;hipSYCL folder not found -&gt; git clone&quot;
-    git clone --recurse-submodules https://github.com/illuhad/hipSYCL
+    git clone --recurse-submodules https://github.com/OpenSYCL/OpenSYCL
 fi
 
 cd ..
@@ -147,9 +147,9 @@ cd ..
 
 echo &quot;$(pwd)&quot;
 
-echo &quot;compiling hipSYCL&quot;
-cd sycl_cpl_src/hipSYCL
-cmake -DCMAKE_INSTALL_PREFIX=../../sycl_cpl/hipSYCL .
+echo &quot;compiling OpenSYCL&quot;
+cd sycl_cpl_src/OpenSYCL
+cmake -DCMAKE_INSTALL_PREFIX=../../sycl_cpl/OpenSYCL .
 make -j install
 cd ..
 
