@@ -6,11 +6,11 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-	font-family: 'Open Sans', sans-serif;
 }
 
 body{
 	background: #ffffff;
+	font-family: 'Open Sans', sans-serif;
 }
 
 .wrapper .sidebar{
@@ -22,6 +22,7 @@ body{
 	height: 100%;
 	padding: 20px 0;
 	transition: all 0.5s ease;
+	font-family: 'Open Sans', sans-serif;
 }
 
 .wrapper .sidebar .profile{
@@ -188,6 +189,7 @@ table {
 
 div.post > p {
 	font-family: Georgia, 'Times New Roman', Times, serif;
+	
 }
 
 .post > h2{
@@ -237,7 +239,7 @@ body > div.page-content > div > div > pre > code {
 .hljs {
 	background: #fff;
 	color: black;
-	font-family: 'Courier New', Courier, monospace;
+	font-family: monospace ;
   }
   
   /* Gray DOCTYPE selectors like WebKit */

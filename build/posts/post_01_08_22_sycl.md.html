@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timothée David--Cléris</title>
+    <link rel="stylesheet" href="../../style.css">
+
+</head>
+<body>
+    <script type="text/javascript" src="../../write_menu.js"></script>
+
+    <script>
+        write_sidebar("posts","../../");
+    </script>
+
+    <script>
+        var hamburger = document.querySelector(".hamburger");
+        hamburger.addEventListener("click", function(){
+            document.querySelector("body").classList.toggle("active");
+        })
+   </script>
+
+    <!link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.6.0/build/styles/default.min.css">
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.6.0/build/highlight.min.js"></script>
+    <!-- and it's easy to individually load additional languages -->
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.6.0/build/languages/go.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
+</body>
+
+
+
+<div class="page-content">
+	<div class="wrap">
+		
+
+<div class="post">
+
+<h1 class="post-title">Sycl setup for Linux and macOS</h1>
+<h4 class="post-date">1 aug 2022 (Updated 1 aug 2022)</h4>
+<br/>
+<h5 class="post-desc">In this post I’m describing how to get DPCPP &amp; HipSycl working.</h5>
+<br/><hr/><br/>
+
+<h2 id="dpcpp-linux-only">DPCPP (Linux only)</h2>
+<ul>
+<li>clone the repo :</li>
+</ul>
+<pre class="sh"><code>git clone https://github.com/intel/llvm -b sycl</code></pre>
+<ul>
+<li>to configure :</li>
+</ul>
+<pre class="sh"><code>python3 buildbot/configure.py --llvm-external-projects compiler-rt --cmake-opt=&quot;-DCMAKE_INSTALL_PREFIX=../../sycl_cpl/dpcpp&quot;</code></pre>
+<p>or</p>
+<pre class="sh"><code>cd llvm
+python3 buildbot/configure.py --llvm-external-projects compiler-rt --cuda --cmake-opt=&quot;-DCMAKE_INSTALL_PREFIX=../../sycl_cpl/dpcpp&quot;</code></pre>
+<ul>
+<li>to compile :</li>
+</ul>
+<pre class="sh"><code>python3 buildbot/compile.py</code></pre>
+<p>or (in build directory)</p>
+<pre class="sh"><code>ninja all</code></pre>
+<p><br/></p>
+<h2 id="hipsycl-linux-macos">HipSyCL (Linux / Macos)</h2>
+<ul>
+<li>to clone :</li>
+</ul>
+<pre class="sh"><code>git clone --recurse-submodules https://github.com/illuhad/hipSYCL</code></pre>
+<ul>
+<li>to configure :</li>
+</ul>
+<pre class="sh"><code>cd hipSYCL
+cmake -DCMAKE_INSTALL_PREFIX=../../sycl_cpl/hipSYCL .</code></pre>
+<ul>
+<li>to compile / install:</li>
+</ul>
+<pre class="sh"><code>make -j install</code></pre>
+<p><br/></p>
+<h2 id="helper-script">Helper script</h2>
+<p>Will clone, configure, compile everything in the working directory.
+When finished compiler are available in the sycl_cpl folder.</p>
+<pre class="sh"><code>unameOut=&quot;$(uname -s)&quot;
+case &quot;${unameOut}&quot; in
+    Linux*)     machine=Linux;;
+    Darwin*)    machine=Mac;;
+    #CYGWIN*)    machine=Cygwin;;
+    #MINGW*)     machine=MinGw;;
+    #*)          machine=&quot;UNKNOWN:${unameOut}&quot;
+esac
+echo &quot;type : ${machine}&quot;
+
+
+
+mkdir -p sycl_cpl_src
+
+
+if [ ! &quot;$machine&quot; == &quot;Mac&quot; ]
+then 
+    mkdir -p sycl_cpl_src/dpcpp
+fi
+
+mkdir -p sycl_cpl/hipSYCL
+
+if [ ! &quot;$machine&quot; == &quot;Mac&quot; ]
+then 
+    mkdir -p sycl_cpl/dpcpp
+    cd sycl_cpl_src/dpcpp
+
+    echo &quot;$(pwd)&quot;
+
+
+    if [ -d &quot;llvm&quot; ] 
+    then
+        echo &quot;dpcpp folder found -&gt; git pull&quot;
+        cd llvm 
+        git pull
+        cd ..
+    else
+        echo &quot;dpcpp folder not found -&gt; git clone&quot;
+        git clone https://github.com/intel/llvm -b sycl
+    fi
+
+    cd ../..
+
+fi
+
+
+cd sycl_cpl_src
+
+if [ -d &quot;hipSYCL&quot; ] 
+then
+    echo &quot;hipSYCL folder found -&gt; git pull&quot;
+    cd hipSYCL 
+    git pull
+    cd ..
+else
+    echo &quot;hipSYCL folder not found -&gt; git clone&quot;
+    git clone --recurse-submodules https://github.com/illuhad/hipSYCL
+fi
+
+cd ..
+
+
+
+echo &quot;$(pwd)&quot;
+
+echo &quot;compiling hipSYCL&quot;
+cd sycl_cpl_src/hipSYCL
+cmake -DCMAKE_INSTALL_PREFIX=../../sycl_cpl/hipSYCL .
+make -j install
+cd ..
+
+if [ ! &quot;$machine&quot; == &quot;Mac&quot; ]
+then 
+    echo &quot;compiling dpcpp&quot;
+    cd dpcpp/llvm
+    echo &quot;$(pwd)&quot;
+
+    if ! type &quot;$nvcc&quot; &gt; /dev/null; then
+        echo &quot;CUDA=false&quot;
+        python3 buildbot/configure.py --llvm-external-projects compiler-rt --cmake-opt=&quot;-DCMAKE_INSTALL_PREFIX=../../sycl_cpl/dpcpp&quot;
+    else
+        echo &quot;CUDA=true&quot;
+        python3 buildbot/configure.py --llvm-external-projects compiler-rt --cuda --cmake-opt=&quot;-DCMAKE_INSTALL_PREFIX=../../sycl_cpl/dpcpp&quot;
+    fi
+
+    cd build
+    ninja all
+
+fi</code></pre>
+<p><br/></p>
+<h2 id="getting-the-autocompletion-working-with-clangd">Getting the
+autocompletion working with clangd</h2>
+<p>If you’re using cmake add in CMakeLists.txt :</p>
+<pre class="cmake"><code>set(CMAKE_EXPORT_COMPILE_COMMANDS ON)</code></pre>
+<p>A file named <code>compile_commands.json</code> will appear in your
+build directory. Clangd can read this file to know to compilations steps
+&amp; flags. But clangd doesn’t know any SyCL compiler flag nor any SyCL
+includes. To solve that you can create a .clangd file in the root
+directory of your project.</p>
+<pre><code>CompileFlags:
+  Remove: [ -fsycl, -fsycl-targets=*, --hipsycl-targets=*, --hipsycl-platform=*, --hipsycl-config-file=*,--hipsycl-cpu-cxx=*]
+  Add: []</code></pre>
+
+</div>
+
+
+        
+	</div>
+</div>
+
+
+
+</html>
