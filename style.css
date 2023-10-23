@@ -47,8 +47,8 @@ body {
 }
 
 .wrapper {
-	max-width: -webkit-calc(800px - (30px * 2));
-	max-width: calc(800px - (30px * 2));
+	max-width: -webkit-calc(800px - (20px * 2));
+	max-width: calc(800px - (20px * 2));
 	margin-right: auto;
 	margin-left: auto;
 	padding-right: 30px;
@@ -71,8 +71,10 @@ body {
 }
 
 .post {
-  margin-right: 150px;
-  margin-left: 150px;
+	max-width: 700px;
+	
+    margin-left: auto;
+    margin-right: auto;
 }
 
 hr {
@@ -144,7 +146,11 @@ footer {
 	list-style: none;
 	margin-left: 0;
 }
+p {
 
+margin-top: 0.5em;
+margin-bottom: 0.5em;
+}
 
 ol.reverse {
 	display: flex;
@@ -153,10 +159,8 @@ ol.reverse {
 ol.publications {
 	margin-left: 0;
 	padding-left: 30px;
-
-  line-height: 0.5em;
+  	line-height: 1em;
 }
-
 p.badges {
 	margin-bottom: 5px;
 }
